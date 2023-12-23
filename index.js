@@ -98,7 +98,9 @@ function filterUsers() {
     for (let i = 0; i < storedUsers.length; i++) {
       get(child(dbref, "Users/" + storedUsers[i])).then((snapshot) => {
         const firstName = snapshot.val().FirstName.toLowerCase();
-       if (firstName.includes(filterValue))
+        const lastName = snapshot.val().LastName.toLowerCase();
+        const index = snapshot.val().Index.toLowerCase();
+       if (index.includes(filterValue))
        {
          tableBody.innerHTML="";
          LoadUser(storedUsers[i]);
@@ -107,6 +109,7 @@ function filterUsers() {
     }
   }
 }
+
 function sortTable() {
   var rows, switching, i, x, y, shouldSwitch;
 
